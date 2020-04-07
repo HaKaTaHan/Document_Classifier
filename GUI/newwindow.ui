@@ -50,7 +50,7 @@
     <string notr="true">background-color: rgb(60, 63, 65);</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="start">
     <property name="sizePolicy">
@@ -414,7 +414,7 @@ border: 0px;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnFinish_2">
+    <widget class="QPushButton" name="btnNo">
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -429,6 +429,49 @@ background-color: rgb(255, 163, 139);</string>
      </property>
      <property name="text">
       <string>아니요</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnYes">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>540</y>
+       <width>200</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 0px;
+background-color: rgb(139, 163, 255);</string>
+     </property>
+     <property name="text">
+      <string>예</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page">
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>200</y>
+       <width>600</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>분류할 제목 문자열을 입력하여 주십시오.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
