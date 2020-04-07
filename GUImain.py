@@ -14,7 +14,8 @@ from stepListener import interfaceStepListener as stepListener
 # Index 1: progress
 # Index 2: showCover
 # Index 3: noCover
-# Index 4: finish
+# Index 4: choice
+# Index 5: finish
 
 timer = time.time()
 

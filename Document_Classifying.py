@@ -3,7 +3,7 @@ import os
 import PdfToImage
 import gradient
 from stepListener import interfaceStepListener as stepListner
-import modelLoad1
+import GPUmodelLoad1
 
 
 class Classifying(object):
@@ -58,7 +58,7 @@ class Classifying(object):
         # 기울기 보정 끝남
         self.__stepListener.upStep()
 
-        self.__Model1 = modelLoad1.model()
+        self.__Model1 = GPUmodelLoad1.model()
         self.__Model1.showGan()
 
         self.__coverlist = self.__Model1.identify_cover()
