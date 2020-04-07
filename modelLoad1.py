@@ -95,47 +95,31 @@ class model(object):
         self.__dict_errD = {}
 
     def showGan(self):
-        print("showGan")
-        self.__modelG = nn.DataParallel(self.__modelG)
+        print("showGan", self.__device)
+
         self.__modelD = nn.DataParallel(self.__modelD)
-        checkpointG = torch.load('./modelData/ver3_gModel_288_0.pt', map_location=torch.device('cpu'))
+
         checkpointD = torch.load('./modelData/ver_999_dModel_100_11.pt', map_location=torch.device('cpu'))
-        state_dict_G = checkpointG['model_state_dict']
         state_dict_D = checkpointD['model_state_dict']
-        new_state_dict_G = OrderedDict()
         new_state_dict_D = OrderedDict()
 
-        for k, v in state_dict_G.items():
-            k = 'module._Generator__'+k
-            new_state_dict_G[k] = v
         for k, v in state_dict_D.items():
             k = 'module._Discriminator__'+k
             new_state_dict_D[k] = v
 
-        self.__modelG.load_state_dict(new_state_dict_G)
         self.__modelD.load_state_dict(new_state_dict_D)
-
-        self.__modelG.eval()
         self.__modelD.eval()
-
         predict_list = []
-
         for i, data in enumerate(self.__dataloader, 0):
-            self.__modelD.zero_grad()
+
             real_cpu = data[0].to(self.__device)
             b_size = real_cpu.size(0)
             label = torch.full((b_size,), 1, device = self.__device)
+
             output = self.__modelD(real_cpu).view(-1)
 
             errD_real = self.__criterion(output, label)
-            errD_real.backward()
-            noise = torch.randn(b_size, 128, 1, 1, device=self.__device)
-            fake = self.__modelG(noise)
-            label.fill_(0)
-            output = self.__modelD(fake.detach()).view(-1)
 
-            errD_fake = self.__criterion(output, label)
-            errD_fake.backward()
             errD = errD_real
             self.__dict_errD[self.__train_data_name[i]] = errD.item()
             print(self.__train_data_name[i], errD)
