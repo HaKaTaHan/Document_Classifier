@@ -474,6 +474,19 @@ background-color: rgb(139, 163, 255);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>360</y>
+       <width>800</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="finish">
     <widget class="QLabel" name="label_2">
