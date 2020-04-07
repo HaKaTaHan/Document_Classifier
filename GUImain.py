@@ -14,8 +14,8 @@ from stepListener import interfaceStepListener as stepListener
 # Index 1: progress
 # Index 2: showCover
 # Index 3: noCover
-# Index 4: choice
-# Index 5: keyword
+# Index 4: inputchoice
+# Index 5: inputkeyword
 # Index 6: finish
 
 timer = time.time()
@@ -34,9 +34,12 @@ class InitWindow(QDialog, stepListener):
         self.btnNoCover.clicked.connect(self.noCoverList)
         self.btnToContent.clicked.connect(self.toContentList)
         self.btnComplete.stackUnder(self.btnToContent)
+        self.btnYes.clicked.connect(self.keyword)
+        self.btnNo.clicked.connect(self.endProgram)
+        self.btnFinish.clicked.connect(qApp.quit)
+        self.btnKeyword.clicked.connect(self.sendKeyword)
         # GoTo ShowCover
         self.progressBar.valueChanged.connect(self.callShowCover)
-        self.btnFinish.clicked.connect(qApp.quit)
         self.__i = 0
         self.__DC = Document_Classifying.Classifying()
         self.__End = object
@@ -111,8 +114,9 @@ class InitWindow(QDialog, stepListener):
         self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
         self.__End.make_Result()
         self.__End.unKnown()
-        self.btnToContent.stackUnder(self.btnComplete)
-        self.stackedWidget.setCurrentIndex(4)
+        # self.btnToContent.stackUnder(self.btnComplete)
+        self.inputSelect()
+
 
     def noCoverList(self):
         print("Clicked NoCover")
@@ -283,6 +287,22 @@ class InitWindow(QDialog, stepListener):
 
         self.showImage2()
         # GoTo ShowContent -> NEED Change to contentProgress
+
+    def inputSelect(self):
+        self.stackedWidget.setCurrentIndex(4)
+
+    def endProgram(self):
+        self.stackedWidget.setCurrentIndex(6)
+
+    def keyword(self):
+        self.stackedWidget.setCurrentIndex(5)
+
+    def sendKeyword(self):
+        inputwords = self.leKeyword.text()
+        self.lblTest.setText(inputwords)
+        QApplication.processEvents()
+
+
 
 
 
