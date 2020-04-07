@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="play">
+    <file>wjplay.png</file>
+    <file>playicon.png</file>
+  </qresource>
+</RCC>
