@@ -54,9 +54,11 @@ class InitWindow(QDialog, stepListener):
         self.__entirePDF = 0
         self.__entireOCR = 0
         self.__entireCrop = 0
+        self.__entireGradient = 0
         self.__currentGradient = 0
         self.__currentCrop = 0
         self.__currentImprovement = 0
+        self.__currentFile = 0
         self.lwList.verticalScrollBar().setStyleSheet("QScrollBar:vertical {border: 0px solid #999999; background: "
                                                       "rgba(0, 0, 0, 1); width: 20px; margin: 0px 0px 0px 0px;}"
                                                       "QScrollBar::handle:vertical {"
@@ -209,7 +211,7 @@ class InitWindow(QDialog, stepListener):
 
     def ping(self):
         self.__currentPDF = self.__currentPDF + 1
-        self.lblProgress.setText('PDF -> IMG 변환 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
+        self.lblProgress.setText('PDF -> IMG 변환 중:'+ str(self.__currentFile) + '번째' +' 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
         QApplication.processEvents()
 
     def ocrping(self):
@@ -219,7 +221,7 @@ class InitWindow(QDialog, stepListener):
 
     def gradientping(self):
         self.__currentGradient = self.__currentGradient + 1
-        self.lblProgress.setText('기울기 보정 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentGradient) + '장 보정')
+        self.lblProgress.setText('기울기 보정 중: 전체 ' + str(self.__entireGradient) + '장 중 ' + str(self.__currentGradient) + '장 보정')
         QApplication.processEvents()
 
     def cropping(self):
@@ -234,8 +236,10 @@ class InitWindow(QDialog, stepListener):
 
     def entirePDF(self, num):
         self.__currentPDF = 0
+        self.__currentFile = self.__currentFile + 1
         self.__entirePDF = num
-        self.lblProgress.setText('PDF -> IMG 변환 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
+        self.__entireGradient = self.__entireGradient + num
+        self.lblProgress.setText('PDF -> IMG 변환 중:'+ str(self.__currentFile) + '번째' +' 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
         QApplication.processEvents()
 
     def entireOCR(self, num):

@@ -33,10 +33,11 @@ class PDFtoIMG(object):
                     file = self.__IMG_path + str(pdf[:-4]) + "-" + str(j) + ".jpg"
                     IMG[j].save(file, 'JPEG')
             else:
-                for page in range(1, maxPages, 1):
+                for page in range(1, maxPages + 1, 1):
                     IMG = convert_from_path(self.__RePDF_path + pdf, poppler_path=self.__Poppler_path, first_page=page,
                                             last_page=min(page + 1 - 1, maxPages))
                     for j in range(len(IMG)):
+                        print(str(page + j) + "/" + str(maxPages))
                         file = self.__IMG_path + str(pdf[:-4]) + "-" + str(page + j) + ".jpg"
                         IMG[j].save(file, 'JPEG')
                         self.__stepListener.ping()
