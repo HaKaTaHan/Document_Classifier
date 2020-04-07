@@ -80,7 +80,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>wjplay.png</normaloff>wjplay.png</iconset>
+       <normaloff>../../../../.designer/backup/wjplay.png</normaloff>../../../../.designer/backup/wjplay.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -468,7 +468,7 @@ background-color: rgb(139, 163, 255);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>분류할 제목 문자열을 입력하여 주십시오.</string>
+      <string>분류할 제목 문자열을 입력하여 주십시오..</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
