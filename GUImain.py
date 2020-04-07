@@ -15,7 +15,8 @@ from stepListener import interfaceStepListener as stepListener
 # Index 2: showCover
 # Index 3: noCover
 # Index 4: choice
-# Index 5: finish
+# Index 5: inputKeyword
+# Index 6: finish
 
 timer = time.time()
 
