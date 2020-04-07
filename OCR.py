@@ -1,21 +1,25 @@
 #-*- coding:utf-8 -*-
 from PIL import Image
 import pytesseract
+
+import os
+import image_processing3
 from stepListener import interfaceStepListener as stepListener
-import cv2
 import time
 
 pytesseract.pytesseract.tesseract_cmd = r'Utils\Tesseract-OCR\tesseract'
 
 
 class CoverCheck(object):
-    def __init__(self, img_path, crop_path, improvement_path):
+    def __init__(self, img_path, crop_path, improvement_path, input_string):
         self.__IMG_path = img_path
         self.__CROP_path = crop_path
         self.__Improvement_path = improvement_path
-        self.__case = ['서식', '수신자', '제 목', '귀하', '통지']
-        self.__Perfect_Cover = []
+        self.__input_detail = input_string.split(',')
+        self.__input_detail.sort(key=len, reverse=True)
+        self.__Perfect_Cover = {}
         self.__stepListener = stepListener
+        self.__IP = image_processing3.IMG_processing(self.__IMG_path, self.__CROP_path, self.__Improvement_path)
 
     def crop_from_jpg(self, img):
         temp = Image.open(self.__IMG_path + img)
@@ -33,6 +37,13 @@ class CoverCheck(object):
             self.__stepListener.cropping()
 
         self.__stepListener.upStep()
+        crop_list = os.listdir(self.__CROP_path)
+        return crop_list
+
+    def improve(self, lists):
+        self.__IP.improve(lists)
+        improvement_list = os.listdir(self.__Improvement_path)
+        return improvement_list
 
     def log(self, error_file):
         file = open('log.txt', "at")
@@ -44,15 +55,15 @@ class CoverCheck(object):
     def comparison_with_improvement(self, crop):
         temp = pytesseract.image_to_string(Image.open(self.__Improvement_path+crop), lang='kor')
 
-        for i in self.__case:
+        self.log('\n' + crop + '\n' + temp + '\n')
+
+        for i in self.__input_detail:
             if temp.find(i) == -1:
                 continue
             else:
-                return True
+                self.__Perfect_Cover[i] = crop
+                break
 
-        self.log('\n' + crop + '\n' + temp + '\n')
-
-        return False
 
     def comparison(self, lists):
 
@@ -61,8 +72,7 @@ class CoverCheck(object):
         self.__stepListener.entireOCR(len(lists))
 
         for i in lists:
-            if self.comparison_with_improvement(i):
-                self.__Perfect_Cover.append(i)
+            self.comparison_with_improvement(i)
             self.__stepListener.ocrping()
 
         self.__stepListener.upStep()
