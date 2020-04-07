@@ -80,7 +80,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../.designer/backup/wjplay.png</normaloff>../../../../.designer/backup/wjplay.png</iconset>
+       <normaloff>wjplay.png</normaloff>wjplay.png</iconset>
      </property>
      <property name="iconSize">
       <size>
