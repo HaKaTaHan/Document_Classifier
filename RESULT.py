@@ -35,6 +35,9 @@ class MakeFolder(object):
                 if e.errno != errno.EEXIST:
                     print("Failed to create directory!!!!!")
                     raise
+            except Exception as ex:
+                print("Error : ", ex)
+                raise
 
     def make_inFolder(self, folderName, originName, number):
         cover_folderName = "Cover " + originName + " - " + number[:-4]

@@ -47,6 +47,9 @@ class PDFtoIMG(object):
             traceback.print_exc()
         except PDFInfoNotInstalledError as installError:
             traceback.print_exc()
+        except Exception as ex:
+            print("Error : ", ex)
+
 
     def convert(self, lists):
         for i in lists:
