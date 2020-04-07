@@ -50,7 +50,7 @@
     <string notr="true">background-color: rgb(60, 63, 65);</string>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="start">
     <property name="sizePolicy">
@@ -449,39 +449,47 @@ background-color: rgb(139, 163, 255);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page">
+   <widget class="QWidget" name="keyword">
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>40</x>
        <y>200</y>
-       <width>600</width>
-       <height>40</height>
+       <width>1200</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>분류할 제목 문자열을 입력하여 주십시오..</string>
+      <string>분류할 제목 문자열(들)을 공백없이 콤마(,)로 구분하여 입력하여 주십시오.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="leKeyword">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>140</x>
        <y>360</y>
-       <width>800</width>
-       <height>40</height>
+       <width>1000</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string/>
