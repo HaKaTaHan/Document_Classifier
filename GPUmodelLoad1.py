@@ -88,27 +88,20 @@ class model(object):
                                                         batch_size = self.__batch_size,
                                                         num_workers = self.__workers)
         self.__ngpu = 1
-        # self.__device = torch.device("cpu")
-        self.__device = torch.device("cuda")
+        self.__device = torch.device("cuda:0" if (
+                torch.cuda.is_available() and self.__ngpu > 0) else "cpu")
         self.__ngf = 32
         self.__ndf = 32
         self.__nc = 3
         self.__criterion = nn.BCELoss()
 
-        #self.__OCR = ocr
-        #self.__IP = ip
-        #self.__CROP_path = crop_path
-        #self.__Improvement_path = improvement_path
         self.__curList = []
         self.__coverList = []
         self.__dict_errD = {}
 
     def showGan(self):
         print("showGan", self.__device)
-        # cpu 일때는 self.__device가 cpu, cuda로 나옴.
         self.__modelD = nn.DataParallel(self.__modelD)
-        if self.__device == 'cuda':
-            self.__modelD.cuda()
 
         checkpointD = torch.load('./modelData/ver_999_dModel_100_11.pt', map_location=torch.device('cpu'))
         state_dict_D = checkpointD['model_state_dict']
