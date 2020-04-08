@@ -34,7 +34,7 @@ class CoverCheck(object):
         self.__stepListener.entireCrop(len(lists))
         for i in lists:
             self.crop_from_jpg(i)
-            self.__stepListener.cropping()
+            # self.__stepListener.cropping()
 
         self.__stepListener.upStep()
         crop_list = os.listdir(self.__CROP_path)
@@ -61,7 +61,16 @@ class CoverCheck(object):
             if temp.find(i) == -1:
                 continue
             else:
-                self.__Perfect_Cover[i] = crop
+                temp_list = []
+
+                if self.__Perfect_Cover.get(i) is None:
+                    print("없음")
+                    temp_list.append(crop)
+                    self.__Perfect_Cover[i] = temp_list
+                else:
+                    temp_list = self.__Perfect_Cover.get(i)
+                    temp_list.append(crop)
+                    self.__Perfect_Cover[i] = temp_list
                 break
 
 
