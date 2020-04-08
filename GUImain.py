@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import os
 import Document_Classifying
+import OCR
 import RESULT
 from stepListener import interfaceStepListener as stepListener
 
@@ -44,6 +45,7 @@ class InitWindow(QDialog, stepListener):
         self.__i = 0
         self.__DC = Document_Classifying.Classifying()
         self.__End = object
+        self.__Ocr = object
         self.__coverList = []
         self.__leftList = []
         self.__page = 0
@@ -112,11 +114,12 @@ class InitWindow(QDialog, stepListener):
         temp = self.__selected_key.keys()
         for i in temp:
             self.__coverList.append(i)
+        print(self.__coverList)
         self.__dict_pagecount = self.__DC.pagecount()
         self.__dict_originList = self.__DC.originList()
-        self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
-        self.__End.make_Result()
-        self.__End.unKnown()
+        #self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
+        #self.__End.make_Result()
+        #self.__End.unKnown()
         # self.btnToContent.stackUnder(self.btnComplete)
         self.inputSelect()
 
@@ -305,10 +308,15 @@ class InitWindow(QDialog, stepListener):
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
-        inputlist = inputwords.split(',')
-        print(inputlist)
         # to ocrProgress
         self.stackedWidget.setCurrentIndex(6)
+
+        self.__Ocr = OCR.CoverCheck(self.__DC.IMG_path, self.__DC.Crop_path, self.__DC.Improvement_path, inputwords)
+        crop_list = self.__Ocr.crop(self.__coverList)
+        improvement_list = self.__Ocr.improve(crop_list)
+        detail_list = self.__Ocr.comparison(improvement_list)
+        print(detail_list)
+
 
 
 if __name__ == '__main__':

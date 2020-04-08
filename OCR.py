@@ -24,19 +24,19 @@ class CoverCheck(object):
     def crop_from_jpg(self, img):
         temp = Image.open(self.__IMG_path + img)
         width, height = temp.size
-        crop_width, crop_height = width, height // 3
+        crop_width, crop_height = width, height // 4
         area = (0, 0, crop_width, crop_height)
         crop_img = temp.crop(area)
         crop_img.save(self.__CROP_path + img)
 
     def crop(self, lists):
-        self.__stepListener.upStep()
-        self.__stepListener.entireCrop(len(lists))
+        #self.__stepListener.upStep()
+        #self.__stepListener.entireCrop(len(lists))
         for i in lists:
             self.crop_from_jpg(i)
             # self.__stepListener.cropping()
 
-        self.__stepListener.upStep()
+        #self.__stepListener.upStep()
         crop_list = os.listdir(self.__CROP_path)
         return crop_list
 
@@ -78,13 +78,13 @@ class CoverCheck(object):
 
         self.__Perfect_Cover.clear()
         timer = time.time()
-        self.__stepListener.entireOCR(len(lists))
+        #self.__stepListener.entireOCR(len(lists))
 
         for i in lists:
             self.comparison_with_improvement(i)
-            self.__stepListener.ocrping()
+            #self.__stepListener.ocrping()
 
-        self.__stepListener.upStep()
+        #self.__stepListener.upStep()
         print(time.time() - timer)
         return self.__Perfect_Cover
 
