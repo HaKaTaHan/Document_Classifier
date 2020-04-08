@@ -303,8 +303,8 @@ class InitWindow(QDialog, stepListener):
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
-        self.lblTest.setText(inputwords)
-        QApplication.processEvents()
+        inputlist = inputwords.split(',')
+        print(inputlist)
 
 
 
