@@ -68,11 +68,7 @@ class Discriminator(nn.Module):
 class model(object):
     # def __init__(self, ocr, ip, crop_path, improvement_path):
     def __init__(self):
-
-        self.__modelG = Generator(1)
-        self.__modelG.cuda()
         self.__modelD = Discriminator(1)
-        self.__modelG.cuda()
         self.__dataroot = './IMG'
         self.__img_size = 32
         self.__batch_size = 1
@@ -101,6 +97,7 @@ class model(object):
 
     def showGan(self):
         print("showGan", self.__device)
+
         self.__modelD = nn.DataParallel(self.__modelD)
 
         checkpointD = torch.load('./modelData/ver_999_dModel_100_11.pt', map_location=torch.device('cpu'))
