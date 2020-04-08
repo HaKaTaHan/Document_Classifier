@@ -11,6 +11,7 @@ class Classifying(object):
         self.__IMG_path = './IMG/IMG/'
         self.__PDF_path = './PDF/'
         self.__CROP_path = './CROP/'
+        self.__Improvement_path = './Improvement/'
         self.__PTI = PdfToImage.PDFtoIMG(self.__PDF_path, self.__IMG_path)
         self.__Gradient = gradient.mod_gradient(self.__IMG_path)
         self.__coverlist = []
