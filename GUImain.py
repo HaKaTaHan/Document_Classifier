@@ -16,7 +16,8 @@ from stepListener import interfaceStepListener as stepListener
 # Index 3: noCover
 # Index 4: inputchoice
 # Index 5: inputkeyword
-# Index 6: finish
+# Index 6: ocrProgress
+# Index 7: finish
 
 timer = time.time()
 
@@ -119,7 +120,6 @@ class InitWindow(QDialog, stepListener):
         # self.btnToContent.stackUnder(self.btnComplete)
         self.inputSelect()
 
-
     def noCoverList(self):
         print("Clicked NoCover")
         self.stackedWidget.setCurrentIndex(2)
@@ -164,7 +164,6 @@ class InitWindow(QDialog, stepListener):
                     self.isItemSelected(item)
         text = str(self.__current_page) + "/" + str(self.__page)
         self.lbIndex.setText(text)
-
 
     def showImage2(self):
         self.lwList.clear()
@@ -293,23 +292,23 @@ class InitWindow(QDialog, stepListener):
         # GoTo ShowContent -> NEED Change to contentProgress
 
     def inputSelect(self):
+        # to inputChoice
         self.stackedWidget.setCurrentIndex(4)
 
     def endProgram(self):
-        self.stackedWidget.setCurrentIndex(6)
+        # to finish
+        self.stackedWidget.setCurrentIndex(7)
 
     def keyword(self):
+        # to inputKeyword
         self.stackedWidget.setCurrentIndex(5)
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
         inputlist = inputwords.split(',')
         print(inputlist)
-
-
-
-
-
+        # to ocrProgress
+        self.stackedWidget.setCurrentIndex(6)
 
 
 if __name__ == '__main__':
