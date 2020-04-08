@@ -126,10 +126,10 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="lblProgress">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>140</x>
        <y>370</y>
-       <width>800</width>
-       <height>40</height>
+       <width>1000</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="font">
@@ -510,30 +510,6 @@ background-color: rgb(255, 163, 139);</string>
      </property>
      <property name="text">
       <string>입력완료</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblTest">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>640</y>
-       <width>1200</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>test</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>

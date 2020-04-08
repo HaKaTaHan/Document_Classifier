@@ -118,7 +118,6 @@ class InitWindow(QDialog, stepListener):
         # self.btnToContent.stackUnder(self.btnComplete)
         self.inputSelect()
 
-
     def noCoverList(self):
         print("Clicked NoCover")
         self.stackedWidget.setCurrentIndex(2)
@@ -163,7 +162,6 @@ class InitWindow(QDialog, stepListener):
                     self.isItemSelected(item)
         text = str(self.__current_page) + "/" + str(self.__page)
         self.lbIndex.setText(text)
-
 
     def showImage2(self):
         self.lwList.clear()
@@ -308,11 +306,6 @@ class InitWindow(QDialog, stepListener):
         QApplication.processEvents()
         # to ocrProgress
         self.stackedWidget.setCurrentIndex(6)
-
-
-
-
-
 
 
 if __name__ == '__main__':
