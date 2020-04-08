@@ -14,9 +14,10 @@ from stepListener import interfaceStepListener as stepListener
 # Index 1: progress
 # Index 2: showCover
 # Index 3: noCover
-# Index 4: choice
-# Index 5: inputKeyword
-# Index 6: finish
+# Index 4: inputchoice
+# Index 5: inputkeyword
+# Index 6: ocrProgress
+# Index 7: finish
 
 timer = time.time()
 
@@ -34,9 +35,12 @@ class InitWindow(QDialog, stepListener):
         self.btnNoCover.clicked.connect(self.noCoverList)
         self.btnToContent.clicked.connect(self.toContentList)
         self.btnComplete.stackUnder(self.btnToContent)
+        self.btnYes.clicked.connect(self.keyword)
+        self.btnNo.clicked.connect(self.endProgram)
+        self.btnFinish.clicked.connect(qApp.quit)
+        self.btnKeyword.clicked.connect(self.sendKeyword)
         # GoTo ShowCover
         self.progressBar.valueChanged.connect(self.callShowCover)
-        self.btnFinish.clicked.connect(qApp.quit)
         self.__i = 0
         self.__DC = Document_Classifying.Classifying()
         self.__End = object
@@ -54,9 +58,11 @@ class InitWindow(QDialog, stepListener):
         self.__entirePDF = 0
         self.__entireOCR = 0
         self.__entireCrop = 0
+        self.__entireGradient = 0
         self.__currentGradient = 0
         self.__currentCrop = 0
         self.__currentImprovement = 0
+        self.__currentFile = 0
         self.lwList.verticalScrollBar().setStyleSheet("QScrollBar:vertical {border: 0px solid #999999; background: "
                                                       "rgba(0, 0, 0, 1); width: 20px; margin: 0px 0px 0px 0px;}"
                                                       "QScrollBar::handle:vertical {"
@@ -111,8 +117,8 @@ class InitWindow(QDialog, stepListener):
         self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
         self.__End.make_Result()
         self.__End.unKnown()
-        self.btnToContent.stackUnder(self.btnComplete)
-        self.stackedWidget.setCurrentIndex(4)
+        # self.btnToContent.stackUnder(self.btnComplete)
+        self.inputSelect()
 
     def noCoverList(self):
         print("Clicked NoCover")
@@ -158,7 +164,6 @@ class InitWindow(QDialog, stepListener):
                     self.isItemSelected(item)
         text = str(self.__current_page) + "/" + str(self.__page)
         self.lbIndex.setText(text)
-
 
     def showImage2(self):
         self.lwList.clear()
@@ -209,7 +214,7 @@ class InitWindow(QDialog, stepListener):
 
     def ping(self):
         self.__currentPDF = self.__currentPDF + 1
-        self.lblProgress.setText('PDF -> IMG 변환 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
+        self.lblProgress.setText('PDF -> IMG 변환 중:'+ str(self.__currentFile) + '번째' +' 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
         QApplication.processEvents()
 
     def ocrping(self):
@@ -219,7 +224,7 @@ class InitWindow(QDialog, stepListener):
 
     def gradientping(self):
         self.__currentGradient = self.__currentGradient + 1
-        self.lblProgress.setText('기울기 보정 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentGradient) + '장 보정')
+        self.lblProgress.setText('기울기 보정 중: 전체 ' + str(self.__entireGradient) + '장 중 ' + str(self.__currentGradient) + '장 보정')
         QApplication.processEvents()
 
     def cropping(self):
@@ -234,8 +239,10 @@ class InitWindow(QDialog, stepListener):
 
     def entirePDF(self, num):
         self.__currentPDF = 0
+        self.__currentFile = self.__currentFile + 1
         self.__entirePDF = num
-        self.lblProgress.setText('PDF -> IMG 변환 중: 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
+        self.__entireGradient = self.__entireGradient + num
+        self.lblProgress.setText('PDF -> IMG 변환 중:'+ str(self.__currentFile) + '번째' +' 전체 ' + str(self.__entirePDF) + '장 중 ' + str(self.__currentPDF) + '장 변환')
         QApplication.processEvents()
 
     def entireOCR(self, num):
@@ -284,8 +291,24 @@ class InitWindow(QDialog, stepListener):
         self.showImage2()
         # GoTo ShowContent -> NEED Change to contentProgress
 
+    def inputSelect(self):
+        # to inputChoice
+        self.stackedWidget.setCurrentIndex(4)
 
+    def endProgram(self):
+        # to finish
+        self.stackedWidget.setCurrentIndex(7)
 
+    def keyword(self):
+        # to inputKeyword
+        self.stackedWidget.setCurrentIndex(5)
+
+    def sendKeyword(self):
+        inputwords = self.leKeyword.text()
+        inputlist = inputwords.split(',')
+        print(inputlist)
+        # to ocrProgress
+        self.stackedWidget.setCurrentIndex(6)
 
 
 if __name__ == '__main__':
