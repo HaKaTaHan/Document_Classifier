@@ -9,6 +9,7 @@ import Document_Classifying
 import OCR
 import RESULT
 from stepListener import interfaceStepListener as stepListener
+import DetailResult
 
 
 # Index 0: start
@@ -65,6 +66,8 @@ class InitWindow(QDialog, stepListener):
         self.__currentCrop = 0
         self.__currentImprovement = 0
         self.__currentFile = 0
+        # self.__detail_list = {}
+        self.__detailResult = None
         self.lwList.verticalScrollBar().setStyleSheet("QScrollBar:vertical {border: 0px solid #999999; background: "
                                                       "rgba(0, 0, 0, 1); width: 20px; margin: 0px 0px 0px 0px;}"
                                                       "QScrollBar::handle:vertical {"
@@ -315,8 +318,16 @@ class InitWindow(QDialog, stepListener):
         crop_list = self.__Ocr.crop(self.__coverList)
         improvement_list = self.__Ocr.improve(crop_list)
         detail_list = self.__Ocr.comparison(improvement_list)
-        print(detail_list)
+        self.__DC.CROP_clear()
+        self.__DC.IMPROVEMENT_clear()
 
+        self.detailResult(detail_list)
+
+    def detailResult(self, detail_list):
+        print(detail_list)
+        self.__detailResult = DetailResult.MakeDetailFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList, detail_list)
+
+        self.__detailResult.makeResult()
 
 
 if __name__ == '__main__':
