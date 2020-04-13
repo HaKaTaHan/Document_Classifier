@@ -43,6 +43,7 @@ class InitWindow(QDialog, stepListener):
         self.btnKeyword.clicked.connect(self.sendKeyword)
         # GoTo ShowCover
         self.progressBar.valueChanged.connect(self.callShowCover)
+        self.pbOCR.valueChanged.connect(self.callShowOCRprogress)
         self.__i = 0
         self.__DC = Document_Classifying.Classifying()
         self.__End = object
@@ -87,7 +88,20 @@ class InitWindow(QDialog, stepListener):
         if self.progressBar.value() == 3:
             self.stackedWidget.setCurrentIndex(2)
             self.progressBar.setValue(0)
-    #         total 6 levels
+            self.__i = 0
+            self.progressBar.valueChanged.disconnect(self.callShowCover)
+
+    def callShowOCRprogress(self):
+        if self.__i == 1:
+            self.lblOCR.setText("이미지 개선 중")
+        elif self.__i == 2:
+            self.lblOCR.setText("문자열 검사 중")
+        elif self.__i == 3:
+            self.lblOCR.setText("문서 저장 중")
+        if self.progressBar.value() == 4:
+            self.lblOCR.setText("완료")
+
+
 
     def startprg(self):
         # GoTo ProgressBar
@@ -216,6 +230,7 @@ class InitWindow(QDialog, stepListener):
         # progress바 조작하는 곳
         self.__i += self.__DC.Step
         self.progressBar.setValue(self.__i)
+        self.pbOCR.setValue(self.__i)
         QApplication.processEvents()
 
     def ping(self):
@@ -303,6 +318,8 @@ class InitWindow(QDialog, stepListener):
 
     def endProgram(self):
         # to finish
+        self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
+        self.__End.make_Result()
         self.stackedWidget.setCurrentIndex(7)
 
     def keyword(self):
@@ -311,22 +328,23 @@ class InitWindow(QDialog, stepListener):
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
+        self.pbOCR.setValue(self.__i)
         # to ocrProgress
         self.stackedWidget.setCurrentIndex(6)
-
+        QApplication.processEvents()
         self.__Ocr = OCR.CoverCheck(self.__DC.IMG_path, self.__DC.Crop_path, self.__DC.Improvement_path, inputwords)
+        self.__Ocr.setOnstepListener(self)
         crop_list = self.__Ocr.crop(self.__coverList)
         improvement_list = self.__Ocr.improve(crop_list)
         detail_list = self.__Ocr.comparison(improvement_list)
         self.__DC.CROP_clear()
         self.__DC.IMPROVEMENT_clear()
-
         self.detailResult(detail_list)
+        self.stackedWidget.setCurrentIndex(7)
 
     def detailResult(self, detail_list):
         print(detail_list)
         self.__detailResult = DetailResult.MakeDetailFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList, detail_list)
-
         self.__detailResult.makeResult()
 
 

@@ -91,6 +91,7 @@ class CoverCheck(object):
 
     def setOnstepListener(self, Listner):
         self.__stepListener = Listner
+        self.__IP.setOnstepListener(Listner)
 
 
 if __name__ == "__main__":
