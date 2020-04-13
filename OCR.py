@@ -20,6 +20,11 @@ class CoverCheck(object):
         self.__Perfect_Cover = {}
         self.__stepListener = stepListener
         self.__IP = image_processing3.IMG_processing(self.__IMG_path, self.__CROP_path, self.__Improvement_path)
+        self.__step = 1
+
+    @property
+    def Step(self):
+        return self.__step
 
     def crop_from_jpg(self, img):
         temp = Image.open(self.__IMG_path + img)
@@ -30,20 +35,18 @@ class CoverCheck(object):
         crop_img.save(self.__CROP_path + img)
 
     def crop(self, lists):
-        self.__stepListener.upStep()
         self.__stepListener.entireCrop(len(lists))
         for i in lists:
             self.crop_from_jpg(i)
             self.__stepListener.cropping()
-
-        self.__stepListener.upStep()
+        self.__stepListener.upStepOCR()
         crop_list = os.listdir(self.__CROP_path)
         return crop_list
 
     def improve(self, lists):
-        self.__stepListener.upStep()
         self.__stepListener.entireCrop(len(lists))
         self.__IP.improve(lists)
+        self.__stepListener.upStepOCR()
         improvement_list = os.listdir(self.__Improvement_path)
         return improvement_list
 
@@ -85,7 +88,7 @@ class CoverCheck(object):
             self.comparison_with_improvement(i)
             self.__stepListener.ocrping()
 
-        self.__stepListener.upStep()
+        self.__stepListener.upStepOCR()
         print(time.time() - timer)
         return self.__Perfect_Cover
 

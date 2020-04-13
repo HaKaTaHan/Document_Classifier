@@ -2,6 +2,9 @@ class interfaceStepListener(object):
     def upStep(self):
         pass
 
+    def upStepOCR(self):
+        pass
+
     #ping은 분자역할
     def ping(self):
         pass

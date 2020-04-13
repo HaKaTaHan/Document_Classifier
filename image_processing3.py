@@ -24,7 +24,7 @@ class IMG_processing(object):
         for i in lists:
             self.image_processing(i)
             self.__stepListener.improvementping()
-        self.__stepListener.upStep()
+        self.__stepListener.upStepOCR()
 
     def setOnstepListener(self, Listner):
         self.__stepListener = Listner
