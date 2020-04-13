@@ -80,6 +80,8 @@ class InitWindow(QDialog, stepListener):
         if self.progressBar.value() == 3:
             self.stackedWidget.setCurrentIndex(2)
             self.progressBar.setValue(0)
+            self.__i = 0
+            self.progressBar.valueChanged.disconnect(self.callShowCover)
     #         total 6 levels
 
     def startprg(self):
@@ -208,6 +210,7 @@ class InitWindow(QDialog, stepListener):
         # progress바 조작하는 곳
         self.__i += self.__DC.Step
         self.progressBar.setValue(self.__i)
+        self.pbOCR.setValue(self.__i)
         QApplication.processEvents()
 
     def ping(self):
@@ -293,6 +296,9 @@ class InitWindow(QDialog, stepListener):
 
     def endProgram(self):
         # to finish
+        self.__End = RESULT.MakeFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList)
+        self.__End.make_Result()
+        self.__End.unKnown()
         self.stackedWidget.setCurrentIndex(7)
 
     def keyword(self):
@@ -306,6 +312,28 @@ class InitWindow(QDialog, stepListener):
         QApplication.processEvents()
         # to ocrProgress
         self.stackedWidget.setCurrentIndex(6)
+<<<<<<< Updated upstream
+=======
+        self.__DC.setOnstepListener(self)
+        self.__DC.setOnPing(self)
+        QApplication.processEvents()
+        self.__Ocr = OCR.CoverCheck(self.__DC.IMG_path, self.__DC.Crop_path, self.__DC.Improvement_path, inputwords)
+        crop_list = self.__Ocr.crop(self.__coverList)
+        improvement_list = self.__Ocr.improve(crop_list)
+        detail_list = self.__Ocr.comparison(improvement_list)
+        self.__DC.CROP_clear()
+        self.__DC.IMPROVEMENT_clear()
+
+        self.detailResult(detail_list)
+
+
+
+    def detailResult(self, detail_list):
+        print(detail_list)
+        self.__detailResult = DetailResult.MakeDetailFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList, detail_list)
+
+        self.__detailResult.makeResult()
+>>>>>>> Stashed changes
 
 
 if __name__ == '__main__':

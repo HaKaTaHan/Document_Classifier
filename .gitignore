@@ -7,3 +7,8 @@ Improvement
 PDF
 RePDF
 Result
+<<<<<<< Updated upstream
+=======
+__pycache__
+test.pdf
+>>>>>>> Stashed changes

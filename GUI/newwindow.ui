@@ -514,12 +514,12 @@ background-color: rgb(255, 163, 139);</string>
     </widget>
    </widget>
    <widget class="QWidget" name="ocrProgress">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblOCR">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>250</y>
-       <width>600</width>
+       <x>140</x>
+       <y>350</y>
+       <width>1000</width>
        <height>40</height>
       </rect>
      </property>
@@ -536,6 +536,32 @@ background-color: rgb(255, 163, 139);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="pbOCR">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>240</y>
+       <width>800</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 0px;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="maximum">
+      <number>3</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="format">
+      <string>%v / 3</string>
      </property>
     </widget>
    </widget>
