@@ -23,8 +23,8 @@ class IMG_processing(object):
     def improve(self, lists):
         for i in lists:
             self.image_processing(i)
-            #self.__stepListener.improvementping()
-        #self.__stepListener.upStep()
+            self.__stepListener.improvementping()
+        self.__stepListener.upStep()
 
     def setOnstepListener(self, Listner):
         self.__stepListener = Listner
