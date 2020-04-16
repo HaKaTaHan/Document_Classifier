@@ -243,6 +243,11 @@ color: rgb(255, 255, 255);</string>
        <height>80</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>맑은 고딕 Semilight</family>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 163, 139);
 color: rgb(255, 255, 255);
@@ -582,6 +587,34 @@ color: rgb(255, 255, 255);
       <string>입력완료</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="btnDisable">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>520</y>
+       <width>200</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>맑은 고딕 Semilight</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 0px;
+background-color: rgb(140, 140, 140);
+color: rgb(255, 255, 255);
+</string>
+     </property>
+     <property name="text">
+      <string>입력필요</string>
+     </property>
+    </widget>
+    <zorder>btnDisable</zorder>
+    <zorder>label_3</zorder>
+    <zorder>leKeyword</zorder>
+    <zorder>btnKeyword</zorder>
    </widget>
    <widget class="QWidget" name="ocrProgress">
     <widget class="QLabel" name="lblOCR">
