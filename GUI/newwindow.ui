@@ -535,7 +535,7 @@ color: rgb(255, 255, 255);
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>분류할 제목 문자열(들)을 공백없이 콤마(,)로 구분하여 입력하여 주십시오.</string>
+      <string>분류할 제목 문자열(들)을 콤마(,)로 구분하여 입력하여 주십시오.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
