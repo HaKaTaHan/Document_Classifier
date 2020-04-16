@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 import math
 import time
 import sys
@@ -37,6 +38,7 @@ class InitWindow(QDialog, stepListener):
         self.btnNoCover.clicked.connect(self.noCoverList)
         self.btnToContent.clicked.connect(self.toContentList)
         self.btnComplete.stackUnder(self.btnToContent)
+        self.btnKeyword.stackUnder(self.btnDisable)
         self.btnYes.clicked.connect(self.keyword)
         self.btnNo.clicked.connect(self.endProgram)
         self.btnFinish.clicked.connect(qApp.quit)
@@ -361,16 +363,23 @@ class InitWindow(QDialog, stepListener):
     def keyReleaseEvent(self, *args, **kwargs):
         print("keyReleaseEvent")
         if self.stackedWidget.currentIndex() == 5:
+            print(self.leKeyword.text().strip(), len(self.leKeyword.text().strip()))
             if len(self.leKeyword.text().strip()) == 0:
-                print("strip")
                 if not self.__checkdisConnect:
                     print("check1", self.__checkdisConnect)
                     self.btnKeyword.clicked.disconnect(self.sendKeyword)
                     self.__checkdisConnect = True
+                    self.btnKeyword.stackUnder(self.btnDisable)
+                    QApplication.processEvents()
+
             else:
                 print("check2", self.__checkdisConnect)
-                self.btnKeyword.clicked.connect(self.sendKeyword)
-                self.__checkdisConnect = False
+                if self.__checkdisConnect:
+                    self.btnKeyword.clicked.connect(self.sendKeyword)
+                    self.__checkdisConnect = False
+                    self.btnDisable.stackUnder(self.btnKeyword)
+                    QApplication.processEvents()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
