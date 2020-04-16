@@ -69,6 +69,7 @@ class InitWindow(QDialog, stepListener):
         self.__currentFile = 0
         # self.__detail_list = {}
         self.__detailResult = None
+        self.__checkdisConnect = False
         self.lwList.verticalScrollBar().setStyleSheet("QScrollBar:vertical {border: 0px solid #999999; background: "
                                                       "rgba(0, 0, 0, 1); width: 20px; margin: 0px 0px 0px 0px;}"
                                                       "QScrollBar::handle:vertical {"
@@ -333,6 +334,8 @@ class InitWindow(QDialog, stepListener):
     def keyword(self):
         # to inputKeyword
         self.stackedWidget.setCurrentIndex(5)
+        self.btnKeyword.clicked.disconnect(self.sendKeyword)
+        self.__checkdisConnect = True
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
@@ -355,6 +358,19 @@ class InitWindow(QDialog, stepListener):
         self.__detailResult = DetailResult.MakeDetailFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList, detail_list)
         self.__detailResult.makeResult()
 
+    def keyReleaseEvent(self, *args, **kwargs):
+        print("keyReleaseEvent")
+        if self.stackedWidget.currentIndex() == 5:
+            if len(self.leKeyword.text().strip()) == 0:
+                print("strip")
+                if not self.__checkdisConnect:
+                    print("check1", self.__checkdisConnect)
+                    self.btnKeyword.clicked.disconnect(self.sendKeyword)
+                    self.__checkdisConnect = True
+            else:
+                print("check2", self.__checkdisConnect)
+                self.btnKeyword.clicked.connect(self.sendKeyword)
+                self.__checkdisConnect = False
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
