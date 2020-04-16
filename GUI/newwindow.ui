@@ -562,6 +562,9 @@ color: rgb(255, 255, 255);
      <property name="text">
       <string/>
      </property>
+     <property name="cursorMoveStyle">
+      <enum>Qt::LogicalMoveStyle</enum>
+     </property>
     </widget>
     <widget class="QPushButton" name="btnKeyword">
      <property name="geometry">

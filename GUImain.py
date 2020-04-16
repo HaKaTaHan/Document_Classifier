@@ -46,6 +46,8 @@ class InitWindow(QDialog, stepListener):
         # GoTo ShowCover
         self.progressBar.valueChanged.connect(self.callShowCover)
         self.pbOCR.valueChanged.connect(self.callShowOCRprogress)
+        #lineedit
+        self.leKeyword.textChanged.connect(self.keywordChanged)
         self.__i = 0
         self.__DC = Document_Classifying.Classifying()
         self.__End = object
@@ -334,10 +336,11 @@ class InitWindow(QDialog, stepListener):
         self.stackedWidget.setCurrentIndex(7)
 
     def keyword(self):
-        # to inputKeyword
         self.stackedWidget.setCurrentIndex(5)
         self.btnKeyword.clicked.disconnect(self.sendKeyword)
         self.__checkdisConnect = True
+
+
 
     def sendKeyword(self):
         inputwords = self.leKeyword.text()
@@ -360,25 +363,43 @@ class InitWindow(QDialog, stepListener):
         self.__detailResult = DetailResult.MakeDetailFolder(self.__coverList, self.__dict_pagecount, self.__dict_originList, detail_list)
         self.__detailResult.makeResult()
 
-    def keyReleaseEvent(self, *args, **kwargs):
+    def keywordChanged(self):
         print("keyReleaseEvent")
-        if self.stackedWidget.currentIndex() == 5:
-            print(self.leKeyword.text().strip(), len(self.leKeyword.text().strip()))
-            if len(self.leKeyword.text().strip()) == 0:
-                if not self.__checkdisConnect:
-                    print("check1", self.__checkdisConnect)
-                    self.btnKeyword.clicked.disconnect(self.sendKeyword)
-                    self.__checkdisConnect = True
-                    self.btnKeyword.stackUnder(self.btnDisable)
-                    QApplication.processEvents()
+        print(self.leKeyword.text().strip(), len(self.leKeyword.text().strip()))
+        if len(self.leKeyword.text().strip()) == 0:
+            if not self.__checkdisConnect:
+                print("check1", self.__checkdisConnect)
+                self.btnKeyword.clicked.disconnect(self.sendKeyword)
+                self.__checkdisConnect = True
+                self.btnKeyword.stackUnder(self.btnDisable)
+                QApplication.processEvents()
+        else:
+            print("check2", self.__checkdisConnect)
+            if self.__checkdisConnect:
+                self.btnKeyword.clicked.connect(self.sendKeyword)
+                self.__checkdisConnect = False
+                self.btnDisable.stackUnder(self.btnKeyword)
+                QApplication.processEvents()
 
-            else:
-                print("check2", self.__checkdisConnect)
-                if self.__checkdisConnect:
-                    self.btnKeyword.clicked.connect(self.sendKeyword)
-                    self.__checkdisConnect = False
-                    self.btnDisable.stackUnder(self.btnKeyword)
-                    QApplication.processEvents()
+    # def keyReleaseEvent(self, *args, **kwargs):
+    #     print("keyReleaseEvent")
+    #     if self.stackedWidget.currentIndex() == 5:
+    #         print(self.leKeyword.text().strip(), len(self.leKeyword.text().strip()))
+    #         if len(self.leKeyword.text().strip()) == 0:
+    #             if not self.__checkdisConnect:
+    #                 print("check1", self.__checkdisConnect)
+    #                 self.btnKeyword.clicked.disconnect(self.sendKeyword)
+    #                 self.__checkdisConnect = True
+    #                 self.btnKeyword.stackUnder(self.btnDisable)
+    #                 QApplication.processEvents()
+    #
+    #         else:
+    #             print("check2", self.__checkdisConnect)
+    #             if self.__checkdisConnect:
+    #                 self.btnKeyword.clicked.connect(self.sendKeyword)
+    #                 self.__checkdisConnect = False
+    #                 self.btnDisable.stackUnder(self.btnKeyword)
+    #                 QApplication.processEvents()
 
 
 if __name__ == '__main__':
