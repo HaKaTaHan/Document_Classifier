@@ -17,8 +17,9 @@ class CoverCheck(object):
         self.__Improvement_path = improvement_path
         self.__detail_list = []
         self.__input_detail = input_string.split(',')
-        for i in self.__input_detail :
-            self.__detail_list.append(i.strip())
+        for i in self.__input_detail:
+            if len(i.strip()) != 0:
+                self.__detail_list.append(i.strip())
         self.__detail_list.sort(key=len, reverse=True)
         self.__Perfect_Cover = {}
         self.__stepListener = stepListener
