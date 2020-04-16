@@ -79,6 +79,8 @@ class InitWindow(QDialog, stepListener):
                                                       "}")
         self.progressBar.setStyleSheet("QProgressBar {border: 0px; color: rgb(255, 255, 255);}"
                                        "QProgressBar::chunk {background-color: rgb(255, 163, 139);}")
+        self.pbOCR.setStyleSheet("QProgressBar {border: 0px; color: rgb(255, 255, 255);}"
+                                       "QProgressBar::chunk {background-color: rgb(255, 163, 139);}")
 
     def callShowCover(self):
         if self.__i == 1:
