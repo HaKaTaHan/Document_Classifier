@@ -230,8 +230,14 @@ class InitWindow(QDialog, stepListener):
         # progress바 조작하는 곳
         self.__i += self.__DC.Step
         self.progressBar.setValue(self.__i)
+        QApplication.processEvents()
+
+    def upStepOCR(self):
+        # progress바 조작하는 곳
+        self.__i += self.__Ocr.Step
         self.pbOCR.setValue(self.__i)
         QApplication.processEvents()
+
 
     def ping(self):
         self.__currentPDF = self.__currentPDF + 1
@@ -240,7 +246,7 @@ class InitWindow(QDialog, stepListener):
 
     def ocrping(self):
         self.__currentOCR = self.__currentOCR + 1
-        self.lblProgress.setText('OCR 검증 중: 전체 ' + str(self.__entireOCR) + '장 중 ' + str(self.__currentOCR) + '장 검증')
+        self.lblOCR.setText('OCR 검증 중: 전체 ' + str(self.__entireOCR) + '장 중 ' + str(self.__currentOCR) + '장 검증')
         QApplication.processEvents()
 
     def gradientping(self):
@@ -250,12 +256,12 @@ class InitWindow(QDialog, stepListener):
 
     def cropping(self):
         self.__currentCrop = self.__currentCrop + 1
-        self.lblProgress.setText('OCR 검증 부분 확인 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentCrop) + '장 확인')
+        self.lblOCR.setText('OCR 검증 부분 확인 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentCrop) + '장 확인')
         QApplication.processEvents()
 
     def improvementping(self):
         self.__currentImprovement = self.__currentImprovement + 1
-        self.lblProgress.setText('이미지 보정 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentImprovement) + '장 보정')
+        self.lblOCR.setText('이미지 보정 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentImprovement) + '장 보정')
         QApplication.processEvents()
 
     def entirePDF(self, num):
@@ -270,14 +276,14 @@ class InitWindow(QDialog, stepListener):
         print("entireOCR")
         self.__currentOCR = 0
         self.__entireOCR = num
-        self.lblProgress.setText('OCR 검증 중: 전체 ' + str(self.__entireOCR) + '장 중 ' + str(self.__currentOCR) + '장 검증')
+        self.lblOCR.setText('OCR 검증 중: 전체 ' + str(self.__entireOCR) + '장 중 ' + str(self.__currentOCR) + '장 검증')
         QApplication.processEvents()
 
     def entireCrop(self, num):
         print("entireCrop")
         self.__entireCrop = 0
         self.__entireCrop = num
-        self.lblProgress.setText('OCR 검증 부분 확인 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentCrop) + '장 확인')
+        self.lblOCR.setText('OCR 검증 부분 확인 중: 전체 ' + str(self.__entireCrop) + '장 중 ' + str(self.__currentCrop) + '장 확인')
         QApplication.processEvents()
 
 
