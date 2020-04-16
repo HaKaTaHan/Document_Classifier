@@ -15,8 +15,11 @@ class CoverCheck(object):
         self.__IMG_path = img_path
         self.__CROP_path = crop_path
         self.__Improvement_path = improvement_path
+        self.__detail_list = []
         self.__input_detail = input_string.split(',')
-        self.__input_detail.sort(key=len, reverse=True)
+        for i in self.__input_detail :
+            self.__detail_list.append(i.strip())
+        self.__detail_list.sort(key=len, reverse=True)
         self.__Perfect_Cover = {}
         self.__stepListener = stepListener
         self.__IP = image_processing3.IMG_processing(self.__IMG_path, self.__CROP_path, self.__Improvement_path)
@@ -62,7 +65,7 @@ class CoverCheck(object):
 
         self.log('\n' + crop + '\n' + temp + '\n')
 
-        for i in self.__input_detail:
+        for i in self.__detail_list:
             if temp.find(i) == -1:
                 continue
             else:
