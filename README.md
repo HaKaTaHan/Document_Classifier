@@ -1,6 +1,10 @@
 # Document_Classifier
 인공지능을 이용한 문서 분류
 
+## 개요
+반복적으로 분류할 필요가 있는 문서의 표지를 학습시킨 모델을 기반으로 문서를 표지와 내용으로 분류하고, 표지 단위로 문서를 나누어 저장합니다.
+또한 표지의 제목에 해당하는 문자열을 OCR로 읽어 원하는 문서들을 따로 분류할 수 있습니다.
+
 ## 실행 전 설정
 * 프로젝트 폴더에 CROP, IMG, Improvement, PDF, RePDF, Result 라는 이름의 폴더를 생성합니다.
 > <img width="100" alt="folder_list" src="https://user-images.githubusercontent.com/37128456/79854198-0f522a00-8404-11ea-8c40-bf5ca8437045.png">
