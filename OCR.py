@@ -63,23 +63,38 @@ class CoverCheck(object):
 
     def comparison_with_improvement(self, crop):
         temp = pytesseract.image_to_string(Image.open(self.__Improvement_path+crop), lang='kor')
-
         self.log('\n' + crop + '\n' + temp + '\n')
 
-        for i in self.__detail_list:
-            if temp.find(i) == -1:
+        f = open("validation.txt", 'w')
+        f.write(temp)
+        f = open("validation.txt", 'r')
+        lines = f.readlines()
+        for li in lines:
+            line = li.replace(" ", "")
+            index = line.find("제목")
+            if line.find("제목") == -1:
                 continue
             else:
-                temp_list = []
+                sentence = line[index + 2:]
+                for i in self.__detail_list:
+                    word = i.replace(" ", "")
+                    if sentence.find(word) == -1:
+                        continue
+                    else:
+                        temp_list = []
 
-                if self.__Perfect_Cover.get(i) is None:
-                    temp_list.append(crop)
-                    self.__Perfect_Cover[i] = temp_list
-                else:
-                    temp_list = self.__Perfect_Cover.get(i)
-                    temp_list.append(crop)
-                    self.__Perfect_Cover[i] = temp_list
+                        if self.__Perfect_Cover.get(i) is None:
+                            temp_list.append(crop)
+                            self.__Perfect_Cover[i] = temp_list
+                        else:
+                            temp_list = self.__Perfect_Cover.get(i)
+                            temp_list.append(crop)
+                            self.__Perfect_Cover[i] = temp_list
+                        break
                 break
+
+        f.close()
+        os.remove("validation.txt")
 
 
     def comparison(self, lists):
