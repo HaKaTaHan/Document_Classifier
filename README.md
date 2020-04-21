@@ -5,7 +5,8 @@
 ## TODO BEFORE EXECUTE
 
 1. Create folders CROP, IMG, Improvement, PDF, RePDF, Result
-![image](https://user-images.githubusercontent.com/37128456/79853026-7838a280-8402-11ea-9b0c-57c5115274f5.png)
+![image](https://user-images.githubusercontent.com/37128456/79854198-0f522a00-8404-11ea-8c40-bf5ca8437045.png)
+<img width="400" alt="folder_list" src="https://user-images.githubusercontent.com/37128456/79854198-0f522a00-8404-11ea-8c40-bf5ca8437045.png">
 
 2. Create folder IMG in IMG
 ![image](https://user-images.githubusercontent.com/37128456/79853414-fdbc5280-8402-11ea-8e58-d2d4c1d8cd86.png)
