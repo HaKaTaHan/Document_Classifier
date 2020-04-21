@@ -1,9 +1,7 @@
 # Document_Classifier
-
 인공지능을 이용한 문서 분류
 
 ## 실행전 설정
-
 1. 프로젝트 폴더에 CROP, IMG, Improvement, PDF, RePDF, Result 라는 이름의 폴더를 생성합니다.
 <img width="100" alt="folder_list" src="https://user-images.githubusercontent.com/37128456/79854198-0f522a00-8404-11ea-8c40-bf5ca8437045.png">
 
