@@ -32,7 +32,7 @@
 > <img width="500" alt="ocr" src="https://user-images.githubusercontent.com/37128456/79861315-32360b80-840f-11ea-9d4f-c32c845799e5.png">
 
 ## 실행 결과
-##### 폴더에 분류하여 저장됩니다.
+폴더에 분류하여 저장됩니다.
 > <img width="500" alt="ocr" src="https://user-images.githubusercontent.com/37128456/79862609-51359d00-8411-11ea-99a3-640ea6eb38a1.png">
 
 ## 실행 전 설정
