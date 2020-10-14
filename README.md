@@ -37,59 +37,19 @@
 
 ## 사용 환경
 * Python 3.6 이상
-* Click 7.0
-* Jinja2 2.11.1
-* Pillow 7.0.0
+* pip 20.2.3
+* six 1.15.0
+
+* Pillow 7.2.0
 * PyPDF2 1.26.0
 * PyQt5 5.14.1
-* PyQt5-sip 12.7.0
-* PyQt5-stubs 5.13.1.4
-* PyYAML 5.3
-* attrs 18.2.0
-* certifi 2019.11.28
-* cffi 1.13.2
-* chardet 3.0.4
-* colorama 0.3.9
-* cryptography 2.8
-* cursor 1.3.4
-* docx2pdf 0.1.5
-* halo 0.0.28
-* idna 2.8
-* improtlib-metadata 1.5.0
-* joblib 0.14.1
-* log-symbols 0.0.14
-* lxml 4.5.0
-* marshmallow 2.20.5
-* numpy 1.18.1
+* PyQt5-sip 12.8.1 (PyQt5와 함께 자동설치)
+* numpy 1.19.2
 * opencv-python 4.1.2.30
 * pdf2image 1.11.0
-* pip 19.0.3
-* progressbar2 3.47.0
-* prompt-toolkit 2.0.10
-* pyOpenSSL 19.1.0
-* pycparser 2.19
-* pyqt5-tools 5.13.0.1.5
 * pytesseract 0.3.1
-* python-docx 0.8.10
-* python-dotenv 0.10.5
-* python-utils 2.3.0
-* pywin32 227
-* requests 2.22.0
-* requests-toolbelt 0.9.1
-* scikit-learn 0.21.2
-* scipy 1.4.1
-* setuptools 40.8.0
-* shellingham 1.3.1
-* six 1.14.0
-* spinners 0.0.23
-* termcolor 1.1.0
-* terminaltables 3.1.0
 * torch 1.4.0
 * torchvision 0.5.0
-* tqdm 4.43.0
-* urllib3 1.25.8
-* wcwidth 0.1.8
-* zipp 3.0.0
 
 ## 실행 전 설정
 * 프로젝트 폴더에 CROP, IMG, Improvement, PDF, RePDF, Result 라는 이름의 폴더를 생성합니다.
