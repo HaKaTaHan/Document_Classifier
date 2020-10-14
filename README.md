@@ -61,5 +61,5 @@
 * 분류를 원하는 PDF 파일(들)을 PDF 폴더 내에 넣습니다. 
 > <img width="300" alt="PDF_located" src="https://user-images.githubusercontent.com/37128456/79853703-58ee4500-8403-11ea-9d2b-efda709286ba.png">
 
-* 실행합니다.
+* GUImain.py를 실행합니다.
 > <img width="500" alt="RUN" src="https://user-images.githubusercontent.com/37128456/79853776-728f8c80-8403-11ea-9c16-a5ea34932e46.png">
