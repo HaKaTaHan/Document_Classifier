@@ -67,5 +67,5 @@
 ## Open Source Announcement
 |Component|License|
 |-----|-----|
-|Pillow|<a src="https://github.com/python-pillow/Pillow/blob/master/LICENSE">PIL License</a>|
+|Pillow|[PIL License](https://github.com/python-pillow/Pillow/blob/master/LICENSE)|
 
