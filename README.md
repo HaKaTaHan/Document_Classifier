@@ -68,4 +68,12 @@
 |Component|License|
 |-----|-----|
 |Pillow|[PIL License](https://github.com/python-pillow/Pillow/blob/master/LICENSE)|
-
+|PyPDF2|[BSD-3-Clause License](https://github.com/mstamy2/PyPDF2/blob/master/LICENSE)|
+|PyQt5|[GNU General Public License v3.0](https://github.com/PyQt5/PyQt/blob/master/LICENSE)|
+|numpy|[BSD-3-Clause License](https://github.com/numpy/numpy/blob/master/LICENSE.txt)|
+|opencv|[BSD-3-Clause License](https://github.com/opencv/opencv/blob/4.4.0/LICENSE)|
+|pdf2image|[MIT License](https://github.com/Belval/pdf2image/blob/master/LICENSE)|
+|pytesseract|[Apache License 2.0](https://github.com/madmaze/pytesseract/blob/master/LICENSE)|
+|pytorch|[BSD-3-Clause License](https://github.com/pytorch/pytorch/blob/master/LICENSE)|
+|torchvision|[BSD-3-Clause](https://github.com/pytorch/vision/blob/master/LICENSE)|
+|six|[MIT License](https://github.com/benjaminp/six/blob/master/LICENSE)|
