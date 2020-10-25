@@ -63,3 +63,9 @@
 
 * GUImain.py를 실행합니다.
 > <img width="500" alt="RUN" src="https://user-images.githubusercontent.com/37128456/79853776-728f8c80-8403-11ea-9c16-a5ea34932e46.png">
+
+## Open Source Announcement
+|Component|License|
+|-----|-----|
+|Pillow|<a src="https://github.com/python-pillow/Pillow/blob/master/LICENSE">PIL License</a>|
+
