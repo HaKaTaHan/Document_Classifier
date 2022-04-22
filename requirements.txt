@@ -1,5 +1,5 @@
 Pillow==7.2.0
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 PyQt5==5.14.1
 PyQt5-sip==12.8.1
 numpy==1.19.2
